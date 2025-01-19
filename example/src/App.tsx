@@ -1,23 +1,24 @@
-import { View, StyleSheet } from 'react-native';
-import { NtModalizeView } from 'react-native-nt-modalize';
+import { useRef } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Modalize } from 'react-native-nt-modalize';
 
 export default function App() {
+  const modalizeRef = useRef<Modalize>(null);
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
   return (
-    <View style={styles.container}>
-      <NtModalizeView color="#32a852" style={styles.box} />
-    </View>
+    <>
+      <TouchableOpacity onPress={onOpen}>
+        <Text>Open the modal</Text>
+      </TouchableOpacity>
+
+      <Modalize ref={modalizeRef}>
+        <View>
+          <Text>...your content</Text>
+        </View>
+      </Modalize>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
