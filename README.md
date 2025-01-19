@@ -1,33 +1,57 @@
-# react-native-nt-modalize
-
-A highly customizable modal/bottom sheet that is updated version of another library react-native-modalize.
+# Modalize
 
 ## Installation
 
-```sh
-npm install react-native-nt-modalize
+```bash
+yarn add react-native-modalize react-native-gesture-handler
 ```
+
+<details>
+  <summary>iOS</summary>
+
+```bash
+npx pod-install ios
+```
+
+</details>
+
+<details>
+  <summary>Android</summary>
+
+#### React Native > 0.60
+
+You don't need to follow the guide mentioned above because autolinking from React already did the steps.
+
+</details>
 
 ## Usage
 
+Here is a quick example, using the default ScrollView renderer.
 
-```js
-import { NtModalizeView } from "react-native-nt-modalize";
+```tsx
+import React, { useRef } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Modalize } from 'react-native-nt-modalize';
 
-// ...
+export const App = () => {
+  const modalizeRef = useRef<Modalize>(null);
 
-<NtModalizeView color="tomato" />
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+
+  return (
+    <>
+      <TouchableOpacity onPress={onOpen}>
+        <Text>Open the modal</Text>
+      </TouchableOpacity>
+
+      <Modalize ref={modalizeRef}>...your content</Modalize>
+    </>
+  );
+};
 ```
 
+## Documentation
 
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+Please check out the full [react-native-modalize documentation available here](https://jeremybarbet.github.io/react-native-modalize) to find all about the props, methods and examples of Modalize's usage. This is a fork version of react-native-modalize
